@@ -16,15 +16,23 @@ import Books from './pages/Books';
 import Students from './pages/Students';
 import Issues from './pages/Issues';
 import Settings from './pages/Settings';
+import StudentPortal from './pages/StudentPortal';
 
-const ProtectedRoute = ({ children }) => {
-  const { token, loading } = useAuth();
+const ProtectedRoute = ({ children, allowedRoles = [] }) => {
+  const { token, user, loading } = useAuth();
   if (loading) return <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center text-glow text-2xl font-bold">Loading...</div>;
   if (!token) return <Navigate to="/login" replace />;
+  
+  if (allowedRoles.length > 0 && !allowedRoles.includes(user?.role)) {
+    return <Navigate to={user?.role === 'student' ? '/app/student-portal' : '/app/dashboard'} replace />;
+  }
+  
   return children;
 };
 
 function AppContent() {
+  const { user } = useAuth();
+
   return (
     <Router>
       <Toaster position="top-right" toastOptions={{
@@ -42,11 +50,38 @@ function AppContent() {
             </LibraryProvider>
           </ProtectedRoute>
         }>
-          <Route index element={<Navigate to="/app/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="books" element={<Books />} />
-          <Route path="students" element={<Students />} />
-          <Route path="issues" element={<Issues />} />
+          <Route index element={<Navigate to={user?.role === 'student' ? '/app/student-portal' : '/app/dashboard'} replace />} />
+          
+          {/* Admin Routes */}
+          <Route path="dashboard" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="books" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <Books />
+            </ProtectedRoute>
+          } />
+          <Route path="students" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <Students />
+            </ProtectedRoute>
+          } />
+          <Route path="issues" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <Issues />
+            </ProtectedRoute>
+          } />
+
+          {/* Student Routes */}
+          <Route path="student-portal" element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <StudentPortal />
+            </ProtectedRoute>
+          } />
+
+          {/* Common Routes */}
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>

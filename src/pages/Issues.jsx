@@ -82,8 +82,8 @@ const Issues = () => {
                   </div>
                   <div>
                     <p className="text-sm text-[var(--color-slate-400)]">Issued To</p>
-                    <h3 className="font-bold text-lg text-[var(--color-slate-100)]">{issue.student?.name}</h3>
-                    <p className="text-sm text-[var(--color-slate-400)]">{issue.student?.rollNo}</p>
+                    <h3 className="font-bold text-lg text-[var(--color-slate-100)]">{issue.user?.name || issue.student?.name}</h3>
+                    <p className="text-sm text-[var(--color-slate-400)]">{issue.user?.email || issue.student?.rollNo}</p>
                   </div>
                 </div>
 

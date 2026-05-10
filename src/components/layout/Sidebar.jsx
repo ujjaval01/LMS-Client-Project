@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BookOpen, Users, LayoutDashboard, ArrowLeftRight, Settings, ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
+import { BookOpen, Users, LayoutDashboard, ArrowLeftRight, Settings, ChevronLeft, ChevronRight, LogOut, GraduationCap } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 const Sidebar = () => {
+  const { logout, user } = useAuth();
   const [collapsed, setCollapsed] = useState(false);
 
-  const navItems = [
+  const adminNavItems = [
     { name: 'Dashboard', path: '/app/dashboard', icon: LayoutDashboard },
     { name: 'Books', path: '/app/books', icon: BookOpen },
     { name: 'Students', path: '/app/students', icon: Users },
     { name: 'Issue & Return', path: '/app/issues', icon: ArrowLeftRight },
-    { name: 'Settings', path: '/app/settings', icon: Settings },
   ];
+
+  const studentNavItems = [
+    { name: 'Portal', path: '/app/student-portal', icon: GraduationCap },
+  ];
+
+  const navItems = user?.role === 'admin' ? adminNavItems : studentNavItems;
 
   return (
     <motion.aside 
@@ -59,10 +66,25 @@ const Sidebar = () => {
             )}
           </NavLink>
         ))}
+        
+        {/* Common Items */}
+        <NavLink
+          to="/app/settings"
+          className={({ isActive }) => `
+            flex items-center px-3 py-3 rounded-xl transition-all duration-300 group relative
+            ${isActive ? 'bg-gradient-to-r from-brand-primary/20 to-transparent text-brand-primary border border-brand-primary/30 shadow-[inset_4px_0_0_0_#3b82f6]' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50'}
+          `}
+        >
+          <Settings className={`w-5 h-5 flex-shrink-0 ${collapsed ? 'mx-auto' : 'mr-3'} group-hover:animate-pulse-glow`} />
+          {!collapsed && <span className="font-medium whitespace-nowrap">Settings</span>}
+        </NavLink>
       </nav>
 
       <div className="p-4 border-t border-[var(--glass-border)]">
-        <button className="flex items-center w-full px-3 py-3 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-400/10 transition-colors group">
+        <button 
+          onClick={logout}
+          className="flex items-center w-full px-3 py-3 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-400/10 transition-colors group"
+        >
           <LogOut className={`w-5 h-5 flex-shrink-0 ${collapsed ? 'mx-auto' : 'mr-3'} group-hover:text-red-400`} />
           {!collapsed && <span className="font-medium">Logout</span>}
         </button>

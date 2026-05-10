@@ -144,8 +144,8 @@ const Header = () => {
             </div>
           </div>
           <div className="hidden md:block">
-            <p className="text-sm font-medium text-[var(--color-slate-200)] line-clamp-1">{user?.name || 'Admin User'}</p>
-            <p className="text-xs text-brand-primary capitalize">{user?.role || 'Librarian'}</p>
+            <p className="text-sm font-medium text-[var(--color-slate-200)] line-clamp-1">{user?.name || 'User'}</p>
+            <p className="text-xs text-brand-primary capitalize">{user?.role || 'Guest'}</p>
           </div>
         </div>
       </div>

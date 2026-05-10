@@ -8,21 +8,26 @@ datasource db {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  name     String
-  email    String   @unique
-  password String
-  role     String   @default("admin")
+  id           Int           @id @default(autoincrement())
+  name         String
+  email        String?       @unique // Optional for students, required for admins
+  rollNo       String?       @unique // Required for students
+  department   String?
+  password     String
+  role         String        @default("student")
+  requests     BookRequest[]
+  issues       Issue[]
 }
 
 model Book {
-  id       Int      @id @default(autoincrement())
+  id       Int           @id @default(autoincrement())
   title    String
   author   String
   category String
-  status   String   @default("Available")
+  status   String        @default("Available")
   cover    String
   issues   Issue[]
+  requests BookRequest[]
 }
 
 model Student {
@@ -37,13 +42,26 @@ model Student {
 model Issue {
   id         Int      @id @default(autoincrement())
   bookId     Int
-  studentId  Int
+  userId     Int?     // For registered students/users
+  studentId  Int?     // For legacy/manual student entries
   issueDate  DateTime @default(now())
   dueDate    DateTime
   status     String   @default("Active")
   
   book       Book     @relation(fields: [bookId], references: [id])
-  student    Student  @relation(fields: [studentId], references: [id])
+  user       User?    @relation(fields: [userId], references: [id])
+  student    Student? @relation(fields: [studentId], references: [id])
+}
+
+model BookRequest {
+  id        Int      @id @default(autoincrement())
+  bookId    Int
+  userId    Int
+  status    String   @default("Pending") // Pending, Approved, Rejected
+  createdAt DateTime @default(now())
+  
+  book      Book     @relation(fields: [bookId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Activity {
