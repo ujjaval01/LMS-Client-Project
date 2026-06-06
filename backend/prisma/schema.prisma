@@ -1,11 +1,13 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = "postgresql://neondb_owner:npg_ztMgR4bm8IeL@ep-cool-flower-aoxtlvm1.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
 }
+
 
 model User {
   id           Int           @id @default(autoincrement())
