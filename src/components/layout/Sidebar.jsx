@@ -38,7 +38,7 @@ const Sidebar = () => {
             animate={{ opacity: 1 }}
             className="ml-3 text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-accent text-glow whitespace-nowrap"
           >
-            AntiGravity
+            Readify
           </motion.span>
         )}
       </div>

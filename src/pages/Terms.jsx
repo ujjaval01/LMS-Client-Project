@@ -25,12 +25,12 @@ const Terms = () => {
         <div className="space-y-6 text-slate-300 leading-relaxed">
           <section>
             <h2 className="text-2xl font-semibold text-white mb-3">1. Acceptance of Terms</h2>
-            <p>By accessing and using AntiGravity LMS, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using these particular services, you shall be subject to any posted guidelines or rules applicable to such services.</p>
+            <p>By accessing and using Readify LMS, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using these particular services, you shall be subject to any posted guidelines or rules applicable to such services.</p>
           </section>
           
           <section>
             <h2 className="text-2xl font-semibold text-white mb-3">2. Description of Service</h2>
-            <p>AntiGravity LMS provides users with access to a rich collection of resources, including various tools, educational content, and personalized content. You understand and agree that the service is provided "AS-IS" and that AntiGravity assumes no responsibility for the timeliness, deletion, mis-delivery or failure to store any user communications or personalization settings.</p>
+            <p>Readify LMS provides users with access to a rich collection of resources, including various tools, educational content, and personalized content. You understand and agree that the service is provided "AS-IS" and that Readify assumes no responsibility for the timeliness, deletion, mis-delivery or failure to store any user communications or personalization settings.</p>
           </section>
 
           <section>

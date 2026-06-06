@@ -23,7 +23,7 @@ const Landing = () => {
 
         <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
           Manage your library in <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent text-glow">AntiGravity</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent text-glow">Readify</span>
         </h1>
 
         <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -66,7 +66,7 @@ const Landing = () => {
       <footer className="w-full mt-32 py-10 border-t border-slate-800 bg-dark/80 backdrop-blur-md z-10">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex flex-col items-center md:items-start">
-                <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">AntiGravity LMS</span>
+                <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Readify LMS</span>
                 <p className="text-slate-500 text-sm mt-2">© 2026 Ujjaval Saini. All rights reserved.</p>
             </div>
             

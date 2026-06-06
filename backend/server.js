@@ -7,7 +7,7 @@ import { PrismaClient } from '@prisma/client';
 const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 5000;
-const JWT_SECRET = 'antigravity_super_secret_key_2026';
+const JWT_SECRET = 'readify_super_secret_key_2026';
 
 app.use(cors());
 app.use(express.json());

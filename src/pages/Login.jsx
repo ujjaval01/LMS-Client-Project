@@ -61,7 +61,7 @@ const Login = () => {
         </div>
         
         <h2 className="text-2xl font-bold text-center text-glow mb-2">
-          AntiGravity Library
+          Readify Library
         </h2>
         
         {/* Role Selector */}
