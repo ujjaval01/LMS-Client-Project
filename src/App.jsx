@@ -11,6 +11,8 @@ import DashboardLayout from './components/layout/DashboardLayout';
 // Pages
 import Landing from './pages/Landing';
 import Login from './pages/Login';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 import Dashboard from './pages/Dashboard';
 import Books from './pages/Books';
 import Students from './pages/Students';
@@ -42,6 +44,8 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
         
         <Route path="/app" element={
           <ProtectedRoute>
