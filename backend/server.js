@@ -340,4 +340,8 @@ app.post('/api/seed', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
+}
+
+export default app;
